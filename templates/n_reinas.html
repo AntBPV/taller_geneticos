@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Problema de las N-Reinas</h1>
+
+<p>
+    Encuentra una distribución de reinas en un tablero
+    minimizando los conflictos entre ellas.
+</p>
+
+<form method="POST">
+
+    <label>Número de reinas</label>
+    <input
+        type="number"
+        name="n"
+        min="4"
+        value="8"
+        required
+    >
+
+    <label>Generaciones</label>
+    <input
+        type="number"
+        name="generaciones"
+        min="1"
+        value="500"
+        required
+    >
+
+    <button type="submit">
+        Ejecutar algoritmo
+    </button>
+
+</form>
+
+
+{% if resultado %}
+
+<section class="resultado">
+
+    <h2>Resultado</h2>
+
+    <p>
+        <strong>Conflictos:</strong>
+        {{ resultado.conflictos }}
+    </p>
+
+    <p>
+        <strong>Generación:</strong>
+        {{ resultado.generacion }}
+    </p>
+
+    <h3>Solución</h3>
+
+    <pre>
+{% for fila in resultado.tablero %}{{ fila|join(" ") }}
+{% endfor %}
+    </pre>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

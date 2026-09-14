@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Problema de la Mochila</h1>
+
+<p>
+    Selecciona objetos maximizando el valor sin superar
+    la capacidad disponible.
+</p>
+
+<form method="POST">
+
+    <label>Capacidad máxima</label>
+
+    <input
+        type="number"
+        name="capacidad"
+        min="1"
+        value="100"
+        required
+    >
+
+    <label>Generaciones</label>
+
+    <input
+        type="number"
+        name="generaciones"
+        min="1"
+        value="500"
+        required
+    >
+
+    <label>Método</label>
+
+    <select name="metodo">
+
+        <option value="penalizacion">
+            Penalización
+        </option>
+
+        <option value="reparacion">
+            Reparación
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Ejecutar algoritmo
+    </button>
+
+</form>
+
+
+{% if resultado %}
+
+<section class="resultado">
+
+    <h2>Resultado</h2>
+
+    <p>
+        <strong>Método:</strong>
+        {{ resultado.metodo }}
+    </p>
+
+    <p>
+        <strong>Peso total:</strong>
+        {{ resultado.peso }}
+    </p>
+
+    <p>
+        <strong>Valor total:</strong>
+        {{ resultado.valor }}
+    </p>
+
+    <p>
+        <strong>Generación:</strong>
+        {{ resultado.generacion }}
+    </p>
+
+    <h3>Objetos seleccionados</h3>
+
+    <table>
+
+        <tr>
+            <th>Objeto</th>
+            <th>Peso</th>
+            <th>Valor</th>
+        </tr>
+
+        {% for objeto in resultado.objetos %}
+
+        <tr>
+
+            <td>{{ objeto[0] }}</td>
+            <td>{{ objeto[1] }}</td>
+            <td>{{ objeto[2] }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

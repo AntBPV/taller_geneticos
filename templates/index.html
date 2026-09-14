@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Algoritmos Genéticos</h1>
+
+<p>
+    Aplicación web para la ejecución de diferentes
+    algoritmos genéticos.
+</p>
+
+<div class="cards">
+
+    <a href="/n-reinas" class="card">
+        <h2>N-Reinas</h2>
+        <p>Resolución del problema de las N-Reinas.</p>
+    </a>
+
+    <a href="/tsp" class="card">
+        <h2>TSP</h2>
+        <p>Problema del viajante.</p>
+    </a>
+
+    <a href="/knapsack" class="card">
+        <h2>Knapsack</h2>
+        <p>Problema de la mochila.</p>
+    </a>
+
+    <a href="/cursos" class="card">
+        <h2>Cursos</h2>
+        <p>Generación de horarios.</p>
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Problema del Viajante (TSP)</h1>
+
+<p>
+    Busca una ruta que visite todas las ciudades
+    minimizando la distancia total.
+</p>
+
+<form method="POST">
+
+    <label>Número de ciudades</label>
+
+    <input
+        type="number"
+        name="ciudades"
+        min="3"
+        value="8"
+        required
+    >
+
+    <label>Generaciones</label>
+
+    <input
+        type="number"
+        name="generaciones"
+        min="1"
+        value="500"
+        required
+    >
+
+    <button type="submit">
+        Ejecutar algoritmo
+    </button>
+
+</form>
+
+
+{% if resultado %}
+
+<section class="resultado">
+
+    <h2>Resultado</h2>
+
+    <p>
+        <strong>Distancia total:</strong>
+        {{ resultado.distancia }}
+    </p>
+
+    <p>
+        <strong>Ruta:</strong>
+        {% for ciudad in resultado.ruta %}
+            {{ ciudad }}{% if not loop.last %} → {% endif %}
+        {% endfor %}
+    </p>
+
+    <h3>Matriz de distancias</h3>
+
+    <table>
+
+        {% for fila in resultado.matriz %}
+
+        <tr>
+
+            {% for valor in fila %}
+
+            <td>{{ valor }}</td>
+
+            {% endfor %}
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

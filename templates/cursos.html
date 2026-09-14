@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Generación de Horarios</h1>
+
+<p>
+    Genera una distribución de cursos, salas y franjas
+    minimizando las restricciones incumplidas.
+</p>
+
+<form method="POST">
+
+    <label>Generaciones</label>
+
+    <input
+        type="number"
+        name="generaciones"
+        min="1"
+        value="500"
+        required
+    >
+
+    <button type="submit">
+        Ejecutar algoritmo
+    </button>
+
+</form>
+
+
+{% if resultado %}
+
+<section class="resultado">
+
+    <h2>Resultado</h2>
+
+    <p>
+        <strong>Penalización:</strong>
+        {{ resultado.penalizacion }}
+    </p>
+
+    <p>
+        <strong>Generación:</strong>
+        {{ resultado.generacion }}
+    </p>
+
+    <h3>Horario generado</h3>
+
+    <table>
+
+        <tr>
+            <th>Curso</th>
+            <th>Sala</th>
+            <th>Franja</th>
+        </tr>
+
+        {% for item in resultado.horario %}
+
+        <tr>
+
+            <td>{{ item.curso }}</td>
+            <td>{{ item.sala }}</td>
+            <td>{{ item.franja }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+{% endif %}
+
+{% endblock %}
